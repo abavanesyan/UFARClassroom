@@ -1,0 +1,64 @@
+﻿@page "/login"
+@inject IUserService UserService
+@using UFAR.Classroom.Entities
+@using UFAR.Classroom.Models
+@using UFAR.Classroom.Services
+@rendermode InteractiveServer
+
+<div class="login-container">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title text-center">Login</h3>
+
+            <EditForm Model="UserLogin" OnValidSubmit="HandleLogin">
+                <DataAnnotationsValidator />
+                <ValidationSummary class="validation-summary" />
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <InputText id="email" class="form-control" @bind-Value="UserLogin.Email" placeholder="Enter your email" />
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <InputText id="password" class="form-control" @bind-Value="UserLogin.Password" type="password" placeholder="Enter your password" />
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </EditForm>
+
+            @if (!string.IsNullOrEmpty(Message))
+            {
+                <p class="message @(Message == "Invalid credentials" ? "text-danger" : "text-success")">@Message</p>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private UserLoginDto UserLogin = new UserLoginDto();
+    private string Message;
+
+    private async Task HandleLogin()
+    {
+        try
+        {
+            var user = await UserService.LoginAsync(UserLogin.Email, UserLogin.Password);
+            if (user == null)
+            {
+                Message = "Invalid credentials";
+            }
+            else
+            {
+                Message = "Login successful";
+                // Handle successful login (e.g., redirect to another page)
+            }
+        }
+        catch (Exception ex)
+        {
+            Message = $"An error occurred: {ex.Message}";
+        }
+    }
+}

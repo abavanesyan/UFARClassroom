@@ -1,0 +1,78 @@
+﻿@page "/"
+
+@using UFAR.Classroom
+@inherits LayoutComponentBase
+
+<div class="hero-section text-center">
+    <div class="container py-5">
+        <h1 class="display-4 text-primary">Welcome to the Virtual Classroom!</h1>
+        <p class="lead text-muted">Your one-stop platform for a seamless learning experience.</p>
+    </div>
+</div>
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Announcements</h5>
+                    <p class="card-text">Stay updated with the latest news and updates:</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>New Feature:</strong> AI-powered learning assistant is now live!
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Upcoming Deadline:</strong> Submit your assignments by Dec 31, 2024.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Maintenance:</strong> Scheduled system downtime on Jan 5, 2025.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="/images/classroom.jpg" class="img-fluid rounded shadow-lg" alt="Virtual Classroom">
+        </div>
+    </div>
+</div>
+
+<style>
+    .hero-section {
+        background: linear-gradient(90deg, #1b2735, #334e68); /* Updated to match sidebar colors */
+        color: white;
+        padding: 2rem 0;
+    }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+        }
+
+    .card {
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+    .list-group-item {
+        font-size: 1rem;
+        border: none;
+    }
+
+    .nav-link {
+        text-decoration: none;
+    }
+
+        .nav-link:hover {
+            color: #6a11cb;
+        }
+</style>

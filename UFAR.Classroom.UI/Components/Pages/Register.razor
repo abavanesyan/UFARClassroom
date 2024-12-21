@@ -1,0 +1,63 @@
+﻿@page "/register"
+@inject IUserService UserService
+@using UFAR.Classroom.Entities
+@using UFAR.Classroom.Services
+@using UFAR.Classroom.Models
+@rendermode InteractiveServer
+
+<div class="registration-container">
+    <h3 class="title">Register</h3>
+
+    <EditForm Model="UserRegistration" OnValidSubmit="HandleRegistration">
+        <DataAnnotationsValidator />
+        <ValidationSummary class="validation-summary" />
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <InputText id="name" class="form-control" @bind-Value="UserRegistration.Name" placeholder="Enter your name" />
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <InputText id="surname" class="form-control" @bind-Value="UserRegistration.Surname" placeholder="Enter your surname" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <InputText id="email" class="form-control" @bind-Value="UserRegistration.Email" placeholder="Enter your email" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <InputText id="password" class="form-control" @bind-Value="UserRegistration.Password" type="password" placeholder="Enter your password" />
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </EditForm>
+
+    @if (!string.IsNullOrEmpty(Message))
+    {
+        <p class="message">@Message</p>
+    }
+</div>
+
+@code {
+    private UserRegistrationDto UserRegistration = new UserRegistrationDto();
+    private string Message;
+
+    private async Task HandleRegistration()
+    {
+        try
+        {
+            var user = new User
+                {
+                    Name = UserRegistration.Name,
+                    Surname = UserRegistration.Surname,
+                    Email = UserRegistration.Email
+                };
+
+            await UserService.RegisterAsync(user, UserRegistration.Password);
+            Message = "User registered successfully";
+        }
+        catch (Exception ex)
+        {
+            Message = ex.Message;
+        }
+    }
+}

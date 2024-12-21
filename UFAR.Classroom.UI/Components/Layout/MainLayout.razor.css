@@ -1,0 +1,189 @@
+/* General Page Styling */
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f0f4fc, #e8eef8);
+    color: #333; /* Neutral text color */
+    min-height: 100vh;
+}
+
+/* Main Content Area */
+main {
+    flex: 1;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    overflow: hidden;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background: linear-gradient(180deg, #283E51, #4C657E); /* Modern blue-gray gradient */
+    color: #ffffff/* Light text for contrast */
+    padding: 2rem;
+    font-weight: bold;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+    .sidebar a {
+        color: #E4E4ED; /* Subtle off-white for links */
+        text-decoration: none;
+        display: block;
+        margin: 1rem 0;
+        font-size: 1.1rem;
+        font-weight: 500;
+        padding: 0.8rem 1.2rem;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05); /* Slight translucent background */
+        transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.15); /* Brighter hover effect */
+            color: #ffffff; /* Bright white on hover */
+            transform: translateX(8px); /* Smooth hover animation */
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+        }
+
+
+/* Top Row (Header) */
+.top-row {
+    background: linear-gradient(135deg, #ffffff, #f9fafc);
+    border-bottom: 1px solid #e0e0e0;
+    justify-content: space-between;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+    .top-row ::deep a,
+    .top-row ::deep .btn-link {
+        white-space: nowrap;
+        margin-left: 1rem;
+        text-decoration: none;
+        color: #007bff; /* Bootstrap primary color */
+        font-weight: 500;
+        border-bottom: 2px solid transparent;
+        transition: border-bottom 0.3s ease, color 0.3s ease;
+    }
+
+        .top-row ::deep a:hover,
+        .top-row ::deep .btn-link:hover {
+            border-bottom: 2px solid #007bff;
+            color: #0056b3; /* Darker shade on hover */
+        }
+
+/* Mobile Responsiveness */
+@media (max-width: 640.98px) {
+    .top-row {
+        justify-content: space-between;
+        padding: 0 1rem;
+    }
+
+        .top-row ::deep a,
+        .top-row ::deep .btn-link {
+            margin-left: 0;
+        }
+}
+
+@media (min-width: 641px) {
+    .page {
+        flex-direction: row;
+    }
+
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .top-row,
+    article {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
+/* Button Styling */
+button,
+.btn-link {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    button:hover,
+    .btn-link:hover {
+        background: linear-gradient(135deg, #2575fc, #6a11cb);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+/* Blazor Error UI */
+#blazor-error-ui {
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    bottom: 0;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.8rem 1.5rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+        color: #856404;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+/* Add Smooth Transition for Hover Effects */
+a,
+button,
+.btn-link {
+    transition: color 0.3s, background-color 0.3s, opacity 0.3s, transform 0.3s;
+}
+
+/* Add Subtle Animation for Sidebar Links */
+.sidebar a:hover {
+    transform: translateX(10px);
+}
